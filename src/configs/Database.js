@@ -55,7 +55,7 @@ export async function initializeDatabase() {
         });
 
 
-        const dbName = process.env.DB_DATABASE || 'atividade1';
+        const dbName = process.env.DB_DATABASE || 'atvddeploy';
 
 
         await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
