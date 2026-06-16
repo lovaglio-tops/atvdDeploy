@@ -1,0 +1,427 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Atividade1
+meta:
+  id: wrk_b321e869233f41f8851861ee8c4c9af7
+  created: 1778589070499
+  modified: 1778589070499
+  description: ""
+collection:
+  - name: Produto
+    meta:
+      id: fld_fdbd6f82ae7c4886bef1f1dd0c5e7e49
+      created: 1778589109688
+      modified: 1778589109688
+      sortKey: -1778589109688
+      description: ""
+    children:
+      - url: http://localhost:3000/produtos
+        name: New Request
+        meta:
+          id: req_0d680cf2249f4381b85e757e9e6a7168
+          created: 1778589112401
+          modified: 1778589290763
+          isPrivate: false
+          description: ""
+          sortKey: -1778589112401
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/produtos/1
+        name: New Request
+        meta:
+          id: req_b89bb6708e704f0ab688133869632166
+          created: 1778589114200
+          modified: 1778591689647
+          isPrivate: false
+          description: ""
+          sortKey: -1778589114200
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: nome
+              value: Gabinete Gamer Aquário Lateral Vidro Espaçoso Grande Preto
+              description: ""
+              disabled: false
+            - name: descricao
+              value: Design Gamer com Vidro Temperado – Gabinete gamer com painéis frontal e
+                lateral em vidro temperado de 3mm, oferecendo visual sofisticado
+                e ideal para setups com iluminação RGB.  Construção Robusta e
+                Compacta – Estrutura em aço SPCC de 0,4 mm, resistente e
+                durável. Formato compacto, perfeito para espaços reduzidos sem
+                abrir mão da performance.
+              description: ""
+              disabled: false
+            - name: preco
+              value: "174.99"
+              description: ""
+              disabled: false
+            - name: estoque
+              value: "10"
+              description: ""
+              disabled: false
+            - name: categoriaId
+              value: "1"
+              description: ""
+              disabled: false
+            - name: imagem
+              value: ""
+              description: ""
+              disabled: false
+              fileName: C:\Users\51891519808\Downloads\Captura de tela 2026-05-12 100817.png
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/produtos
+        name: New Request
+        meta:
+          id: req_6fa885ae46dc4905aec1cbc0f828b39f
+          created: 1778589116145
+          modified: 1778848157103
+          isPrivate: false
+          description: ""
+          sortKey: -1778589116145
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: nome
+              value: Gabinete Gamer Branco GB1791 4 fans RGB Micro-Atx Em vidro temperado
+              description: ""
+              disabled: false
+            - name: descricao
+              value: Chapa lateral vidro temperado 4mm Filtro anti-poeira superior e inferior
+                HD Áudio Painel de vidro temperado 4mm
+              description: ""
+              disabled: false
+            - name: preco
+              value: "279.00"
+              description: ""
+              disabled: false
+            - name: estoque
+              value: "5"
+              description: ""
+              disabled: false
+            - name: categoriaId
+              value: "1"
+              description: ""
+              disabled: false
+            - name: imagem
+              value: ""
+              description: ""
+              disabled: false
+              fileName: C:\Users\51891519808\Downloads\Captura de tela 2026-05-15 092900.png
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/produtos
+        name: New Request
+        meta:
+          id: req_2555a0219a1d4e48957e6ba70d084c28
+          created: 1778589117621
+          modified: 1778589147266
+          isPrivate: false
+          description: ""
+          sortKey: -1778589117621
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Categoria
+    meta:
+      id: fld_31734e191c904c8e85a23763cceeab37
+      created: 1778589302146
+      modified: 1778589302146
+      sortKey: -1778589302146
+      description: ""
+    children:
+      - url: http://localhost:8000/categoria
+        name: New Request
+        meta:
+          id: req_27f26772b41a44719d80141d7659c6b0
+          created: 1778590124404
+          modified: 1778869901500
+          isPrivate: false
+          description: ""
+          sortKey: -1778590124404
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/categoria/2
+        name: New Request
+        meta:
+          id: req_76f98ffb2adb4ad19dab01669f3f8813
+          created: 1778590134316
+          modified: 1778864455136
+          isPrivate: false
+          description: ""
+          sortKey: -1778590134316
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"computadores"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/categoria
+        name: New Request
+        meta:
+          id: req_14c438970a354185949707ff5b93d6e7
+          created: 1778590135677
+          modified: 1778864414096
+          isPrivate: false
+          description: ""
+          sortKey: -1778590135677
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "mouse"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/categoria
+        name: New Request
+        meta:
+          id: req_eccbba97a91f414c87d687bbec29cfcd
+          created: 1778590137360
+          modified: 1778864411107
+          isPrivate: false
+          description: ""
+          sortKey: -1778590137360
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: pedidos
+    meta:
+      id: fld_08320cdcff8348999ad31ec515938614
+      created: 1778591767980
+      modified: 1778591767980
+      sortKey: -1778591767980
+      description: ""
+    children:
+      - url: http://localhost:8000/pedidos/1
+        name: New Request
+        meta:
+          id: req_d3a9121ff4c343a59da36c3010d78b05
+          created: 1778591785678
+          modified: 1778869910087
+          isPrivate: false
+          description: ""
+          sortKey: -1778591785678
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/pedidos/1
+        name: New Request
+        meta:
+          id: req_f4612e51ca654e279f8219a2947d5231
+          created: 1778591787888
+          modified: 1778869860601
+          isPrivate: false
+          description: ""
+          sortKey: -1778591787888
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "statusPedido": "Entregue"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/pedidos
+        name: New Request
+        meta:
+          id: req_c74209fbd5244db0b1f6735630066d87
+          created: 1778591791125
+          modified: 1778868247388
+          isPrivate: false
+          description: ""
+          sortKey: -1778591791125
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "itens": [
+                {
+                  "produtoId": 2,
+                  "quantidade": 1
+                }
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/pedidos
+        name: New Request
+        meta:
+          id: req_146355e247284359b67d2b592af264bb
+          created: 1778591793625
+          modified: 1778868129265
+          isPrivate: false
+          description: ""
+          sortKey: -1778591793625
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9111a8547c50175b1649e117ccd28ad8f705569c
+    created: 1778589070527
+    modified: 1778589070527
+environments:
+  name: Base Environment
+  meta:
+    id: env_9111a8547c50175b1649e117ccd28ad8f705569c
+    created: 1778589070511
+    modified: 1778589070511
+    isPrivate: false
