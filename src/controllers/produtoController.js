@@ -119,9 +119,16 @@ const produtosController = {
 
         try {
 
-            const result = await produtosRepository.selecionar();
+            const produtos = await produtosRepository.selecionar();
 
-            res.status(200).json(result);
+            const resultado = produtos.map(produto => ({
+                ...produto,
+                Imagem: produto.Imagem
+                    ? `${req.protocol}://${req.get('host')}/uploads/imagens/${produto.Imagem}`
+                    : null
+            }));
+
+            res.status(200).json(resultado);
 
         } catch (error) {
 
@@ -137,9 +144,19 @@ const produtosController = {
 
             const id = req.params.id;
 
-            const result = await produtosRepository.selecionarPorId(id);
+            const produto = await produtosRepository.selecionarPorId(id);
 
-            res.status(200).json(result);
+            if (!produto) {
+                return res.status(404).json({
+                    message: "Produto não encontrado"
+                });
+            }
+
+            produto.Imagem = produto.Imagem
+                ? `${req.protocol}://${req.get('host')}/uploads/imagens/${produto.Imagem}`
+                : null;
+
+            res.status(200).json(produto);
 
         } catch (error) {
 

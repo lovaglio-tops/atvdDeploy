@@ -75,6 +75,7 @@ const produtosRepository = {
                 p.Preco,
                 p.Imagem,
                 p.Estoque,
+                p.CategoriaId,
                 c.Nome AS Categoria
             FROM produtos p
             LEFT JOIN categorias c
@@ -96,6 +97,7 @@ const produtosRepository = {
                 p.Preco,
                 p.Imagem,
                 p.Estoque,
+                p.CategoriaId,
                 c.Nome AS Categoria
             FROM produtos p
             LEFT JOIN categorias c
