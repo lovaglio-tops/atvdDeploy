@@ -1,10 +1,12 @@
 import mysql from 'mysql2/promise';
-import 'dotenv/config';
+import dotenv from 'dotenv';
 
-// Design Pattern: Singleton
+
+// Singleton para a conexão com o banco de dados
 class Database {
     static #instance = null;
     #pool = null;
+
 
     #createPool() {
         this.#pool = mysql.createPool({
@@ -12,7 +14,7 @@ class Database {
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             database: process.env.DB_DATABASE,
-            port: Number(process.env.DB_PORT),
+            port: process.env.DB_PORT,
             waitForConnections: true,
             connectionLimit: 100,
             queueLimit: 0,
@@ -22,6 +24,7 @@ class Database {
         });
     }
 
+
     static getInstance() {
         if (!Database.#instance) {
             Database.#instance = new Database();
@@ -30,42 +33,35 @@ class Database {
         return Database.#instance;
     }
 
+
     getPool() {
         return this.#pool;
     }
 }
 
+
 export const connection = Database.getInstance().getPool();
 
-console.log({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT
-});
 
 export async function initializeDatabase() {
-    console.log("Inicializando banco de dados...");
-
+    console.log("Inicializando o banco de dados e tabelas...");
     try {
         const tempConnection = await mysql.createConnection({
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
-            port: Number(process.env.DB_PORT),
-            ssl: {
-                rejectUnauthorized: false
-            }
+            port: process.env.DB_PORT,
+            ssl: { rejectUnauthorized: false }
         });
 
-        console.log("Conectado ao banco com sucesso!");
 
-        // Teste de conexão
-        const [teste] = await tempConnection.query('SELECT NOW() AS dataAtual');
-        console.log("Teste de conexão:", teste);
+        const dbName = process.env.DB_DATABASE || 'atividade1';
 
-        // Categorias
+
+        await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
+        await tempConnection.query(`USE \`${dbName}\`;`);
+
+
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS categorias (
                 Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -73,7 +69,7 @@ export async function initializeDatabase() {
             );
         `);
 
-        // Produtos
+
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS produtos (
                 Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,13 +79,13 @@ export async function initializeDatabase() {
                 Imagem VARCHAR(255),
                 Estoque INT NOT NULL,
                 CategoriaId INT,
+
                 CONSTRAINT FK_Produtos_Categorias
                 FOREIGN KEY (CategoriaId)
                 REFERENCES categorias(Id)
             );
         `);
 
-        // Pedidos
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS pedidos (
                 Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -99,7 +95,6 @@ export async function initializeDatabase() {
             );
         `);
 
-        // Itens dos pedidos
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS itens_pedidos (
                 Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -119,11 +114,11 @@ export async function initializeDatabase() {
             );
         `);
 
-        await tempConnection.end();
 
-        console.log("Banco de dados e tabelas criados/verificados com sucesso.");
+        await tempConnection.end();
+        console.log("Banco de dados e tabelas verificados/criados com sucesso.");
     } catch (error) {
-        console.error("Erro ao inicializar banco:", error);
+        console.error("Erro ao criar o banco ou as tabelas:", error);
         throw error;
     }
 }
