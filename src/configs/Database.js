@@ -12,10 +12,13 @@ class Database {
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             database: process.env.DB_DATABASE,
-            port: process.env.DB_PORT,
+            port: Number(process.env.DB_PORT),
             waitForConnections: true,
             connectionLimit: 100,
-            queueLimit: 0
+            queueLimit: 0,
+            ssl: {
+                rejectUnauthorized: false
+            }
         });
     }
 
@@ -42,18 +45,18 @@ export async function initializeDatabase() {
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            port: process.env.DB_PORT
+            database: process.env.DB_DATABASE,
+            port: Number(process.env.DB_PORT),
+            ssl: {
+                rejectUnauthorized: false
+            }
         });
 
-        const dbName = process.env.DB_DATABASE;
+        console.log("Conectado ao banco com sucesso!");
 
-        await tempConnection.query(
-            `CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`
-        );
-
-        await tempConnection.query(
-            `USE \`${dbName}\`;`
-        );
+        // Teste de conexão
+        const [teste] = await tempConnection.query('SELECT NOW() AS dataAtual');
+        console.log("Teste de conexão:", teste);
 
         // Categorias
         await tempConnection.query(`
@@ -73,7 +76,6 @@ export async function initializeDatabase() {
                 Imagem VARCHAR(255),
                 Estoque INT NOT NULL,
                 CategoriaId INT,
-
                 CONSTRAINT FK_Produtos_Categorias
                 FOREIGN KEY (CategoriaId)
                 REFERENCES categorias(Id)
@@ -90,7 +92,7 @@ export async function initializeDatabase() {
             );
         `);
 
-        // Itens dos Pedidos
+        // Itens dos pedidos
         await tempConnection.query(`
             CREATE TABLE IF NOT EXISTS itens_pedidos (
                 Id INT AUTO_INCREMENT PRIMARY KEY,
