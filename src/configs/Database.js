@@ -37,6 +37,13 @@ class Database {
 
 export const connection = Database.getInstance().getPool();
 
+console.log({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
+});
+
 export async function initializeDatabase() {
     console.log("Inicializando banco de dados...");
 
@@ -45,7 +52,7 @@ export async function initializeDatabase() {
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
+            //database: process.env.DB_DATABASE,
             port: Number(process.env.DB_PORT),
             ssl: {
                 rejectUnauthorized: false
